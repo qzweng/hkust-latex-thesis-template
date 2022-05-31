@@ -1,13 +1,18 @@
-thesis.pdf: main.tex \
-				chapter/*.tex \
+ENGINE=pdflatex
 
-	latex main.tex
-	bibtex main
-	latex main.tex
-	latex main.tex
-	dvipdf main.dvi thesis.pdf
+DOC=thesis
+
+FLAGS=-halt-on-error -synctex=1 -interaction=nonstopmode
+
+all: $(DOC).pdf 
+
+$(DOC).toc: $(DOC).tex
+	$(ENGINE) $(FLAGS) $(DOC).tex
+
+$(DOC).pdf: $(DOC).toc
+	bibtex $(DOC)
+	$(ENGINE) $(FLAGS) $(DOC).tex
+	$(ENGINE) $(FLAGS) $(DOC).tex
 
 clean:
-	rm *.aux *.bbl *.blg *.dvi *.pdf *.bak *.toc *.tol *.lof *.log *.lot
-read:
-	acroread thesis.pdf
+	rm -rf *.aux *.log *.toc *.bbl *.blg *.pdf *.ps *.dvi *.lot *.lof *.out

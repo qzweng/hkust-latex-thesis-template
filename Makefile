@@ -15,4 +15,4 @@ $(DOC).pdf: $(DOC).toc
 	$(ENGINE) $(FLAGS) $(DOC).tex
 
 clean:
-	rm -rf *.aux *.log *.toc *.bbl *.blg *.pdf *.ps *.dvi *.lot *.lof *.out
+	rm -rf *.aux *.log *.toc *.bbl *.blg *.pdf *.ps *.dvi *.lot *.lof *.out *.fls
